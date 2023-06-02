@@ -8,7 +8,7 @@ using only NumPy and Random Python modules.
 There are 2 main methods:
 
 > ```
-> nn.stochastic_gradient_descent(training_data, epoch, batch_size, >learning_rate)
+> nn.stochastic_gradient_descent(training_data, epoch, batch_size, learning_rate)
 > nn.testing_nn(test_data)
 >```
 
