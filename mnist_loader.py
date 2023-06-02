@@ -1,3 +1,7 @@
+'''
+ This code is mostly created by chatGPT.
+ What I did was modify the structure of the training and test data extracted so it can work with the nn module
+'''
 import torch
 import numpy
 from torchvision import datasets, transforms
@@ -27,24 +31,10 @@ def load_mnist():
     training_data_np = list(zip(training_inputs, training_results))
 
     # converting test_data
-    print("pytorch test size: " + str(len(test_data)))
     test_inputs = [numpy.reshape(x, (784, 1)) for x, y in test_data]
     test_results = [y for x, y in test_data]
     test_data_np = list(zip(test_inputs, test_results))
 
-    # converting training_data into numpy arrays
-    '''
-    training_inputs = [numpy.reshape(x, (784, 1)) for x in training_data[0]]
-    training_results = [vectorized_result(y) for y in training_data[1]]
-    training_data_np = list(zip(training_inputs, training_results))
-
-    # converting test_data into numpy arrays
-    
-    test_inputs = [numpy.reshape(x, (784, 1)) for x in test_data[0]]
-    test_results = list(zip(test_inputs, test_data[1]))
-    test_data_np = list(zip(test_inputs, test_results))
-    return training_data_np, test_data_np
-    '''
     return training_data_np, test_data_np
 
 def vectorized_result(j):
@@ -53,11 +43,3 @@ def vectorized_result(j):
     e[j] = 1.0
     return e
 
-# Usage
-train_data, test_data = load_mnist()
-
-# Example printing the first sample
-#print(test_data[0])
-print("size of training_data: " + str(len(train_data)))
-print("size of test_data: " + str(len(test_data)))
-print("==================================================================================")
