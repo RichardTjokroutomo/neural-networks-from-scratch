@@ -1,0 +1,7 @@
+the mnist file will output the following:
+
+1) training data
+this will be a tuple (x, y), where y is 1x784 list containing the input, while y is the expected output.
+
+2) test data
+the same as training data.
