@@ -1,3 +1,4 @@
+# this code is originally made by Michael Nielsen. I only made minor modifications from it.
 
 import pickle
 import gzip
@@ -5,7 +6,7 @@ import numpy as np
 
 # path
 # example: my root path: C:/Users/Richard/Documents/-projects/project-17
-path = "ROOT_PATH/data/mnist.pkl.gz"
+path = "C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz"
 
 
 def load_data():
@@ -37,4 +38,9 @@ def vectorized_result(j):
     e = np.zeros((10, 1))
     e[j] = 1.0
     return e
+
+
+#train, test = load_mnist()
+#x, y = test[0]
+#print(x)
 

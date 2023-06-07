@@ -38,8 +38,15 @@ class nn:
                 counter += 1
         
         return counter, test_data_size
-
-
+    
+    # give 1 input
+    def eval_input(self, input_data):
+        answer = 0;
+        for i in range(10):
+            result = self.evaluate_model(input_data, i);
+            if result:
+                answer = i;
+        return answer;
     # MODELS
     # ============================================================================================================
 
