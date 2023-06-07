@@ -17,7 +17,7 @@ import gzip
 import numpy as np
 
 # path
-path = "C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz"
+path = "ROOT_PATH/data/mnist.pkl.gz"
 
 
 def load_data():
