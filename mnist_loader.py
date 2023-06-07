@@ -1,45 +1,52 @@
-'''
- This code is mostly created by chatGPT.
- What I did was modify the structure of the training and test data extracted so it can work with the nn module
-'''
-import torch
-import numpy
-from torchvision import datasets, transforms
+"""
+mnist_loader
+~~~~~~~~~~~~
+
+A library to load the MNIST image data.  For details of the data
+structures that are returned, see the doc strings for ``load_data``
+and ``load_data_wrapper``.  In practice, ``load_data_wrapper`` is the
+function usually called by our neural network code.
+"""
+
+#### Libraries
+# Standard library
+import pickle
+import gzip
+
+# Third-party libraries
+import numpy as np
+
+# path
+path = "C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz"
+
+
+def load_data():
+
+    f = gzip.open(path, "rb")
+    training_data, validation_data, test_data = pickle.load(f, encoding="iso-8859-1")
+    f.close()
+    return (training_data, test_data)
 
 def load_mnist():
-    # Define the data transformations
-    transform = transforms.Compose([
-        transforms.ToTensor(),
-        transforms.Normalize((0.1307,), (0.3081,))
-    ])
+   
+    tr_d, te_d = load_data()
+    training_inputs = [np.reshape(x, (784, 1)) for x in tr_d[0]]
+    training_results = [vectorized_result(y) for y in tr_d[1]]
+    training_data = list(zip(training_inputs, training_results))
 
-    # Load the MNIST dataset
-    train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
-    test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
+    print("training_inputs type: " + str(type(training_inputs)))
+    print("training_results type: " + str(type(training_results)))
+    print("========================================================================")
+    test_inputs = [np.reshape(x, (784, 1)) for x in te_d[0]]
+    test_data = list(zip(test_inputs, te_d[1]))
 
-    # Create the data loaders
-    train_loader = torch.utils.data.DataLoader(train_dataset, batch_size=1, shuffle=True)
-    test_loader = torch.utils.data.DataLoader(test_dataset, batch_size=1, shuffle=False)
-
-    # Extract the data and labels
-    training_data = [(x.view(-1).tolist(), y.tolist()) for x, y in train_loader]
-    test_data = [(x.view(-1).tolist(), y.tolist()) for x, y in test_loader]
-
-    # converting training_data 
-    training_inputs = [numpy.reshape(x, (784, 1)) for x, y in training_data]
-    training_results = [vectorized_result(y) for x, y in training_data]
-    training_data_np = list(zip(training_inputs, training_results))
-
-    # converting test_data
-    test_inputs = [numpy.reshape(x, (784, 1)) for x, y in test_data]
-    test_results = [y for x, y in test_data]
-    test_data_np = list(zip(test_inputs, test_results))
-
-    return training_data_np, test_data_np
+    #print(training_data[0])
+    #print(test_data[0])
+    return (training_data, test_data)
 
 def vectorized_result(j):
 
-    e = numpy.zeros((10, 1))
+    e = np.zeros((10, 1))
     e[j] = 1.0
     return e
 
