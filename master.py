@@ -15,7 +15,7 @@ print("begin training the NN")
 print("============================================================================")
 
 myNetwork = nn.nn()
-myNetwork.stochastic_gradient_descent(training_data, 10, 10, 3)
+myNetwork.stochastic_gradient_descent(training_data, 15, 10, 3)
 
 print("NN has been trained")
 print("============================================================================")

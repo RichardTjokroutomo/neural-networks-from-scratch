@@ -6,7 +6,7 @@ import numpy as np
 
 # path
 # example: my root path: C:/Users/Richard/Documents/-projects/project-17
-path = "C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz"
+path = "ROOT_URL/data/mnist.pkl.gz"
 
 
 def load_data():
