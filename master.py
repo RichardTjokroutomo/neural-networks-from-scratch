@@ -4,7 +4,9 @@ import nn
 print("loading the data")
 print("============================================================================")
 
-training_data, test_data = mnist_loader.load_mnist()
+# path = "C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz" # THIS IS SAMPLE PATH
+path = input("please enter the full path of the mnist.pkl.gz dataset: ")
+training_data, test_data = mnist_loader.load_mnist(path)
 
 print("data has been loaded.")
 print("============================================================================")
@@ -15,7 +17,7 @@ print("begin training the NN")
 print("============================================================================")
 
 myNetwork = nn.nn()
-myNetwork.stochastic_gradient_descent(training_data, 15, 10, 3)
+myNetwork.stochastic_gradient_descent(training_data, 10, 10, 3)
 
 print("NN has been trained")
 print("============================================================================")

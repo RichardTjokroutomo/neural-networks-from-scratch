@@ -5,20 +5,20 @@ import gzip
 import numpy as np
 
 # path
-# example: my root path: C:/Users/Richard/Documents/-projects/project-17
-path = "ROOT_PATH/data/mnist.pkl.gz"
+# example: my root path: C:/Users/Richard/Documents/-projects/project-17/data/mnist.pkl.gz
 
 
-def load_data():
+
+def load_data(path):
 
     f = gzip.open(path, "rb")
     training_data, validation_data, test_data = pickle.load(f, encoding="iso-8859-1")
     f.close()
     return (training_data, validation_data, test_data)
 
-def load_mnist():
+def load_mnist(path):
    
-    tr_d, va_d, te_d = load_data()
+    tr_d, va_d, te_d = load_data(path)
     training_inputs = [np.reshape(x, (784, 1)) for x in tr_d[0]]
     training_results = [vectorized_result(y) for y in tr_d[1]]
     training_data = list(zip(training_inputs, training_results))

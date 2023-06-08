@@ -14,7 +14,8 @@ There are 3 main methods:
 
 
 #### Notes:
-> - before running ```master.py```, make sure to change the ```path``` variable in ```mnist_loader.py``` to the directory of where you are storing the MNIST data.
+> - ```master.py``` provides example on how the user can run the ```nn.py``` module, along with the given data loader
+
 
 > - ```.stochastic_gradient_descent()``` returns ```null```.
 > - ```.testing_nn()``` returns 2 ```int``` values: the number of correct guess and the total number of trials. 
